@@ -11,6 +11,12 @@
 </head>
 <body>
     <div class="container">
+        {% if error %}
+
+        <div class="alert alert-danger" role="alert" >
+            {{error}}
+        </div>
+        {% endif %}
         <div class="row">
             <div class="col-12 col-md-6 d-flex justify-content-center align-items-center" >
                 <img src="{% static 'library.png' %}" class="img-fluid" alt="library" style="height: 100vh; width: 100%; object-fit: cover; " >
@@ -36,13 +42,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="password" name="password" required >
+                            <input type="password" class="form-control" id="password" name="confirm_password" required >
                         </div>
                         <button type="submit" class="btn btn-primary btn-block" style="width: 100%; padding: 10px 0; " >Submit</button>
                     </form>
                         
                 </div>
-                <p style="color: gray; margin-top: 10px;">Already have an account? <a href="">Log In</a></p>
+                <p style="color: gray; margin-top: 10px;">Already have an account? <a href="{% url 'login' %}">Log In</a></p>
                 <p>&copy; <span id="year"></span> KRUTTO89. All rights reserverd.</p>
                 <script>
                     document.getElementById('year').textContent = new Date().getFullYear();
