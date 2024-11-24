@@ -7,6 +7,28 @@
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'bootstrap-5.3.3-dist/css/bootstrap.min.css' %}">
     <script src="{% static 'bootstrap-5.3.3-dist/js/bootstrap.min.js' %}" ></script>
+    <style>
+        .messages {
+            margin: 20px 0;
+        }
+    
+        .message {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+    
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+    </style>
+    
 
 </head>
 <body>
@@ -21,8 +43,20 @@
                 <h1 style="font-weight:600; color: aqua;" >Hi, Welcome Back</h1>
                 <h2>please fill in your details to log in</h2>
                 <p></p>
+                {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div class="message {{ message.tags }}">
+                        {{message}}
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+                {% endif %}
+
                 <div class="card" style="width: 100%; max-width: 400px; padding: 20px; border-radius: 10px; ">
-                    <form method="POST" action="">
+                    <form method="POST" action="{% url 'dashboard' %}">
                         {% csrf_token %}
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
