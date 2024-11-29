@@ -57,7 +57,8 @@ def dashboard(request):
     # If not a POST request, simply show the login page
     return render(request, 'login.html')
 
-    
+def books_view(request):
+    return render(request,'books-page.html')
 
 
 

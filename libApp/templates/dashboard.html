@@ -1,3 +1,7 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block body %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -122,7 +126,7 @@
                 <div class="card">
                     <h5 style="text-align: center;" class="card-header"><i class="fa-solid fa-bars"></i> Menu</h5>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="btn btn-primary btn-block mb-5 mt-2"><i class="fa-solid fa-book"></i> Books</a></li>
+                        <li><a href="{% url 'books' %}" class="btn btn-primary btn-block mb-5 mt-2"><i class="fa-solid fa-book"></i> Books</a></li>
                         <li><a href="#" class="btn btn-primary btn-block mb-5"><i class="fa-solid fa-user"></i> Member</a></li>
                         <li><a href="#" class="btn btn-primary btn-block"><i class="fas fa-user-tie"></i> Borrower</a></li>
                     </ul>
@@ -150,3 +154,6 @@
 
 </body>
 </html>
+
+{% endblock %}
+
