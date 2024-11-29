@@ -14,3 +14,22 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
      
+# class Book(models.Model):
+#     title = models.CharField(max_length=100)
+#     author = models.CharField(max_length=100)
+#     publication_date = models.DateField()
+#     isbn = models.CharField(max_length=13)
+#     class Meta:
+#         constraints = [
+#             models.UniqueConstraint(
+#                 fields=['title','author','publication_date','isbn'],
+#                 name = 'unique_book'
+#             )
+#         ]
+
+class ImageModel(models.Model):
+    image = models.ImageField(upload_to='images/')
+    title = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.title
