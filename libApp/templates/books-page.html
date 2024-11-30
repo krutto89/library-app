@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static  %}
+
+{% block body  %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>books-page</title>
+</head>
+<body>
+    <div>
+        <div >
+            <h2 style="text-align: center;" >VIEW BOOKS</h2>
+            <p></p>
+          </div>
+          <div>
+            <table class="table table-striped" border="1" style="width: 100%;" >
+                <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Date-Added</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+                {% for x in bks %}
+
+                <tr>
+                    <td>{{x.title}}</td>
+                    <td>{{x.category}}</td>
+                    <td>{{x.author}}</td>
+                    <td>{{x.dateAdded}}</td>
+                    <td>{{x.quantity}}</td>
+                    <td>
+                        <a href="" class="btn btn-warning" >EDIT</a>
+                        <a href="" class="btn btn-danger" >DELETE</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </table>
+          </div>
+    </div>
+</body>
+</html>
+
+{% endblock %}
