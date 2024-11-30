@@ -27,6 +27,21 @@
                     <th>Quantity</th>
                     <th>Action</th>
                 </tr>
+                {% for x in bks %}
+
+                <tr>
+                    <td>{{x.title}}</td>
+                    <td>{{x.category}}</td>
+                    <td>{{x.author}}</td>
+                    <td>{{x.dateAdded}}</td>
+                    <td>{{x.quantity}}</td>
+                    <td>
+                        <a href="" class="btn btn-warning" >EDIT</a>
+                        <a href="" class="btn btn-danger" >DELETE</a>
+                    </td>
+                </tr>
+
+                {% endfor %}
 
             </table>
           </div>

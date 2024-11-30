@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add books</title>
+</head>
+<body>
+    <div>
+        <h1 style="text-align: center;">Fill in the form below to add books</h1>
+    </div>
+    <div>
+        <form action="{% url 'books' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4 form-group">
+                  <input type="text" name="title" class="form-control" id="name" placeholder="book title" required="">
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <input type="text" class="form-control" name="author" id="email" placeholder="Author" required="">
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <input type="number" class="form-control" name="quantity" id="phone" placeholder="quantity" required="">
+                </div>
+                <div class="col-md-4 form-group mt-3">
+                  <input type="datetime-local" class="form-control" name="dateAdded"  placeholder="date added" hidden>
+                </div>
+                <div class="col-md-4 form-group mt-3">
+                    <select name="category"  class="form-select" required="">
+                      <option value="">Select Category</option>
+                      <option value="Doctor 1">Fiction</option>
+                      <option value="Doctor 2">Science</option>
+                      <option value="Doctor 3">Literature</option>
+                    </select>
+                  </div>
+                  <div class="text-center mt-4" >
+                    <button type="submit">Add Books</button>
+                  </div>
+
+              </div>
+
+
+
+        </form>
+    </div>
+
+</body>
+</html>
+
+{% endblock %}

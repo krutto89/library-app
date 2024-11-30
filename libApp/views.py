@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
+from .models import Book
 # from django.contrib.auth import authenticate,login as auth_login
 # Create your views here.
 def login(request):
@@ -58,8 +59,23 @@ def dashboard(request):
     return render(request, 'login.html')
 
 def books_view(request):
-    return render(request,'books-page.html')
+    allBooks = Book.objects.all()
+    context = {'bks':allBooks}
+    return render (request, 'books-page.html', context)
+    
 
-
+def books_add(request):
+    if request.method == 'POST':
+        books = Book (
+            title = request.POST['title'],
+            author = request.POST['author'],
+            category = request.POST['category'],
+            quantity = request.POST['quantity']
+        )
+        books.save()
+        return redirect('/books')
+    else:
+        return render(request, 'add-books.html')
+   
 
         
