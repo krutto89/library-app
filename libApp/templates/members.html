@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static  %}
+
+{% block body  %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members</title>
+</head>
+<body>
+
+    <div>
+        <div >
+            <h2 style="text-align: center;" >VIEW ALL MEMBERS</h2>
+            <p></p>
+          </div>
+          <div>
+            <table class="table table-striped" border="1" style="width: 100%;">
+                <tr>
+                    <th>Name</th>
+                    <th>REG Number</th>
+                    <th>Level</th>
+                    <th>Phone Number</th>
+                    <th>Date Joined</th>
+                    <th>Actions</th>
+                </tr>
+                {% for x in mems %}
+                <tr>
+                    <td>{{x.names}}</td>
+                    <td>{{x.regNo}}</td>
+                    <td>{{x.levels}}</td>
+                    <td>{{x.phoneNumber}}</td>
+                    <td>{{x.dateJoined}}</td>
+                    <td>
+                        <a href="" class="btn btn-primary">Edit</a>
+                        <a href="" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+          </div>
+    </div>
+    
+</body>
+</html>
+
+{% endblock  %}

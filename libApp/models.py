@@ -44,3 +44,13 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Members(models.Model):
+    names = models.CharField(max_length=100)
+    regNo = models.CharField(max_length=100)
+    levels = models.CharField(max_length=100)
+    phoneNumber = models.CharField(max_length=100)
+    dateJoined = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
