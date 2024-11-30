@@ -70,7 +70,7 @@ def books_add(request):
             title = request.POST['title'],
             author = request.POST['author'],
             category = request.POST['category'],
-            quantity = request.POST['quantity']
+            quantity = int(request.POST['quantity'])
         )
         books.save()
         return redirect('/books')
