@@ -39,7 +39,7 @@ class Book(models.Model):
     author = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     quantity = models.IntegerField()
-    # image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', null= True, blank=True)
     dateAdded = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

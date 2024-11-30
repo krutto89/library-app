@@ -20,6 +20,7 @@
           <div>
             <table class="table table-striped" border="1" style="width: 100%;" >
                 <tr>
+                    <th>Image</th>
                     <th>Title</th>
                     <th>Category</th>
                     <th>Author</th>
@@ -30,6 +31,14 @@
                 {% for x in bks %}
 
                 <tr>
+                    <td>
+                        {% if x.image %}
+                        <img src="{{x.image.url}}" alt="Book Cover" style="width: 40px; height: 40px;">
+                        {% else %}
+                        No image
+                        {% endif %}
+
+                    </td>
                     <td>{{x.title}}</td>
                     <td>{{x.category}}</td>
                     <td>{{x.author}}</td>

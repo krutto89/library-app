@@ -15,7 +15,7 @@
         <h1 style="text-align: center;">Fill in the form below to add books</h1>
     </div>
     <div>
-        <form action="{% url 'addbooks' %}" method="POST">
+        <form action="{% url 'addbooks' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
                 <div class="col-md-4 form-group">
@@ -38,6 +38,10 @@
                       <option value="Doctor 3">Literature</option>
                     </select>
                   </div>
+                  <div class="col-md-4 form-group mt-3">
+                    <input type="file" name="image" class="form-control" accept="image/*">
+                </div>
+
                   <div class="text-center mt-4" >
                     <button type="submit">Add Books</button>
                   </div>
