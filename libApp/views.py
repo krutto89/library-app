@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
-from .models import Book
+from .models import Book ,Members
 # from django.contrib.auth import authenticate,login as auth_login
 # Create your views here.
 def login(request):
@@ -70,12 +70,30 @@ def books_add(request):
             title = request.POST['title'],
             author = request.POST['author'],
             category = request.POST['category'],
-            quantity = request.POST['quantity']
+            quantity = int(request.POST['quantity']),
+            image = request.FILES['image']
         )
         books.save()
         return redirect('/books')
     else:
         return render(request, 'add-books.html')
    
+def members(request):
+    allMembers = Members.objects.all()
+    context = {'mems':allMembers}
+    return render (request, 'members.html', context)
 
+def members_add(request):
+    if request.method == 'POST':
+        memb = Members (
+            names = request.POST['names'],
+            regNo = request.POST['regNo'],
+            levels = request.POST['levels'],
+            phoneNumber = request.POST['phoneNumber'],
+        )
+        memb.save()
+        return redirect('/members')
+    else:
+        return render(request, 'add-members.html')
+    
         
