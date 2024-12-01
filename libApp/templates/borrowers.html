@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borrowers</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Borrowers</h1>
+        </div>
+        <div>
+            <table class="table table-striped" border="1" style="width: 100%;" >
+                <tr>
+                <th>Name</th>
+                <th>Reg Number</th>
+                <th>level</th>
+                <th>Phone Number</th>
+                <th>Date Added</th>
+                <th>Book Borrowed</th>
+                <th>Due Date</th>
+                <th>Action</th>
+                </tr>
+                {% for x in brws %}
+                <tr>
+                <td>{{ x.names }}</td>
+                <td>{{ x.regNo }}</td>
+                <td>{{ x.levels }}</td>
+                <td>{{ x.phoneNumber }}</td>
+                <td>{{ x.dateJoined }}</td>
+                <td>{{ x.bkBorrowed }}</td>
+                <td>{{ x.dueDate }}</td>
+                <td>
+                    <a href="" class="btn btn-warning" >EDIT</a>
+                    <a href="" class="btn btn-danger" >DELETE</a>
+                </td>
+                </tr>
+                {% endfor %}
+
+                
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+{% endblock  %}
