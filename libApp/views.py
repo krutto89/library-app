@@ -7,7 +7,7 @@ from django.db import IntegrityError
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from .models import Book ,Members ,BorrowersList
-from .forms import BookForm , MemberForm
+from .forms import BookForm , MemberForm ,BorrowerForm
 # from django.contrib.auth import authenticate,login as auth_login
 # Create your views here.
 def login(request):
@@ -156,3 +156,23 @@ def membersDelete(request,id): #deletes the selected member details from the dat
     deletemems = Members.objects.get(id=id)
     deletemems.delete()
     return redirect('/members')
+
+def borrowersEdit(request,id): #rendering the edit form with prefilled data for the selected borrower
+
+    editborrowers = BorrowersList.objects.get(id=id)
+    return render(request, 'edit-borrowers.html', {'borrowerss':editborrowers})
+
+def updateBorrowers(request,id): #handles form submission and updates the selected borrower details in the database
+    updatebrws = BorrowersList.objects.get(id=id)
+    form = BorrowerForm(request.POST, instance= updatebrws)
+
+    if form.is_valid():
+        form.save()
+        return redirect('/borrowers')
+    else:
+        return render(request, 'edit-borrowers.html', {'borrowerss':updatebrws})
+
+def deleteBorrowers(request,id):
+    deletebrws = BorrowersList.objects.get(id=id)
+    deletebrws.delete()
+    return redirect('/borrowers')

@@ -37,8 +37,8 @@
                 <td>{{ x.bkBorrowed }}</td>
                 <td>{{ x.dueDate }}</td>
                 <td>
-                    <a href="" class="btn btn-warning" >EDIT</a>
-                    <a href="" class="btn btn-danger" >DELETE</a>
+                    <a href="{% url 'editborrower' x.id %}" class="btn btn-warning" >EDIT</a>
+                    <a href="{% url 'deleteborrower' x.id %}" class="btn btn-danger" >DELETE</a>
                 </td>
                 </tr>
                 {% endfor %}
