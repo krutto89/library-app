@@ -36,8 +36,8 @@
                     <td>{{x.phoneNumber}}</td>
                     <td>{{x.dateJoined}}</td>
                     <td>
-                        <a href="" class="btn btn-primary">Edit</a>
-                        <a href="" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'editmembers' x.id %}" class="btn btn-primary">Edit</a>
+                        <a href="{% url 'deletemembers' x.id %}" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
                 {% endfor %}
