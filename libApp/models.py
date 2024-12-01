@@ -54,3 +54,15 @@ class Members(models.Model):
     
     def __str__(self):
         return self.name
+class BorrowersList(models.Model):
+    names = models.CharField(max_length=100)
+    regNo = models.CharField(max_length=100)
+    phoneNumber = models.CharField(max_length=100)
+    dateJoined = models.DateTimeField(auto_now_add=True)
+    # bkBorrowed = models.ForeignKey(Book, on_delete=models.CASCADE)
+    levels = models.CharField(max_length=100)
+    bkBorrowed = models.CharField(max_length=100)
+    dueDate = models.DateTimeField()
+
+    def __str__(self):
+        return self.name
