@@ -21,6 +21,7 @@ urlpatterns = [
     path('editborrowers/<int:id>/',views.borrowersEdit, name='editborrower'),
     path('deleteborrowers/<int:id>/',views.deleteBorrowers, name='deleteborrower'),
     path ('updateborrowers/<int:id>/',views.updateBorrowers, name='updateborrower'),
+    # path('search/', views.search_books, name='search_books'),
     # path('logout/', views.logout_view, name='logout'),
     # path('profile/<str:username>/', views.profile, name='profile'),
     # path('profile/<str:username>/edit/', views.edit_profile, name='edit_profile'),
