@@ -106,8 +106,12 @@ def members_add(request):
         return render(request, 'add-members.html')
     
 def borrowers(request):
-    allBorrowers = BorrowersList.objects.all()
-    context = {'brws':allBorrowers}
+    query = request.GET.get('query', '')
+    if query:
+        results = BorrowersList.objects.filter(names__icontains=query) 
+    else:
+        results = BorrowersList.objects.all()
+    context = {'brws':results, 'query': query,'is_search':bool(query)}
     return render (request, 'borrowers.html', context)
         
 

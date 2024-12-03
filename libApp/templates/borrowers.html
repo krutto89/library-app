@@ -13,8 +13,50 @@
 <body>
     <div>
         <div>
-            <h1>Borrowers</h1>
+            <h1 style="text-align: center;">Borrowers</h1>
         </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="GET">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search Borrower by Name " name="query" value="{{ query }}">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            {% if results %}
+                <h4>Search Results:</h4>
+
+
+                {% if brws %}
+                <ul>
+                    {% for borrower in results %}
+                        <li>{{ borrower.names }} </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>no matches found for "{{ query }}"</p>
+                {% endif %}
+
+
+            {% else %}
+            <h4>all Borrowers</h4>
+
+
+            <ul>
+                {% for borrower in brws %}
+                    <li>{{ borrower.names }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            
+        </div>
+
+
         <div>
             <table class="table table-striped" border="1" style="width: 100%;" >
                 <tr>
