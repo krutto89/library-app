@@ -60,10 +60,15 @@ def dashboard(request):
     return render(request, 'login.html')
 
 def books_view(request):
-    allBooks = Book.objects.all()
-    context = {'bks':allBooks}
-    return render (request, 'books-page.html', context)
+    query = request.GET.get('query', '')
+    if query:
+        results = Book.objects.filter(title__icontains=query) | Book.objects.filter(author__icontains=query)
+    else:
+        results = Book.objects.all()  # Show all books when no search query exists
     
+    context = {'bks': results, 'query': query}
+    return render(request, 'books-page.html', context)
+
 
 def books_add(request):
     if request.method == 'POST':
@@ -176,3 +181,4 @@ def deleteBorrowers(request,id):
     deletebrws = BorrowersList.objects.get(id=id)
     deletebrws.delete()
     return redirect('/borrowers')
+
