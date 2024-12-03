@@ -18,6 +18,49 @@
             <h2 style="text-align: center;" >VIEW ALL MEMBERS</h2>
             <p></p>
           </div>
+
+          
+          <div class="row">
+            <div class="col-md-6">
+                <form method="GET">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search Member by Name " name="query" value="{{ query }}">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            {% if results %}
+                <h4>Search Results:</h4>
+
+
+                {% if mems %}
+                <ul>
+                    {% for mem in results %}
+                        <li>{{ mem.names }} </li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                    <p>no matches found for "{{ query }}"</p>
+                {% endif %}
+
+
+            {% else %}
+            <h4>all members</h4>
+
+
+            <ul>
+                {% for mem in mems %}
+                    <li>{{ mem.names }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            
+        </div>
+
           <div>
             <table class="table table-striped" border="1" style="width: 100%;">
                 <tr>

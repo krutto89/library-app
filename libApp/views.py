@@ -69,7 +69,6 @@ def books_view(request):
     context = {'bks': results, 'query': query}
     return render(request, 'books-page.html', context)
 
-
 def books_add(request):
     if request.method == 'POST':
         books = Book (
@@ -85,8 +84,12 @@ def books_add(request):
         return render(request, 'add-books.html')
    
 def members(request):
-    allMembers = Members.objects.all()
-    context = {'mems':allMembers}
+    query = request.GET.get('query', '')
+    if query:
+        results = Members.objects.filter(names__icontains=query) 
+    else:
+        results = Members.objects.all()
+    context = {'mems':results, 'query': query,'is_search':bool(query)}
     return render (request, 'members.html', context)
 
 def members_add(request):
