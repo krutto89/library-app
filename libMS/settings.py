@@ -133,3 +133,13 @@ AUTH_USER_MODEL = 'libApp.CustomUser'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP server
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ruttokevin89@gmail.com'  # Gmail address
+EMAIL_HOST_PASSWORD = 'slzj bqmb ssgw ytll'  # Your Gmail password or an app-specific password
+DEFAULT_FROM_EMAIL = 'ruttokevin89@gmail.com'  # Email address that will appear as the sender

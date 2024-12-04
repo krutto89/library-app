@@ -16,3 +16,13 @@ class BorrowerForm(forms.ModelForm):
     class Meta:
         model = BorrowersList
         fields = ['names', 'regNo', 'phoneNumber','levels','bkBorrowed','dueDate']
+
+class BorrowBookForm(forms.Form):
+    email = forms.EmailField(
+        label="please input your email details ",
+        max_length=100,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Enter your email',
+        })
+    )
