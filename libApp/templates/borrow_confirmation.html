@@ -2,22 +2,25 @@
 {% load static %}
 
 {% block body %}
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-<div>
     <p></p>
-    <h2>Book Borrowed Successfully!</h2>
-    <p>An email confirmation has been sent to your email address.</p>
-</div>
+    <p></p>
+    <div style="text-align: center;">
+        <h2>Book Borrowed Successfully!</h2>
+        <p>An email confirmation has been sent to your email address.</p>
+    </div>
 
-</body>
-</html>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            confetti({
+                particleCount: 7000,
+                spread: 900,  
+                origin: { y: 0 },  // Center the origin
+                angle : 90,
+                gravity:1.2,
+            });
+        });
+    </script>
 {% endblock %}
