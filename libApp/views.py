@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from .models import Book ,Members ,BorrowersList
 from .forms import BookForm , MemberForm ,BorrowerForm
+from django.contrib.auth import authenticate, login
 # from django.contrib.auth import authenticate,login as auth_login
 # Create your views here.
 def login(request):
@@ -19,7 +20,14 @@ def register (request):
         username = request.POST.get('username')
         password = request.POST.get('password','').strip()
         confirm_password = request.POST.get('confirm_password','').strip()
+        role = request.POST.get('role','student')
+
         
+        if role == 'student':
+            print("User registered as a student.")
+        elif role == 'librarian':
+            print("User registered as a librarian.")
+
         if not username or not password or not confirm_password:
             return render(request,'register.html',{'error':'All fields are required'})
 
@@ -38,26 +46,8 @@ def register (request):
     return render(request,'register.html')
 
 def dashboard(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+    return render(request,'dashboard.html')
 
-        # Check if the user exists with the given username
-        try:
-            user = CustomUser.objects.get(username=username)
-        except CustomUser.DoesNotExist:
-            user = None
-
-        if user and check_password(password, user.password):
-            # If user exists and password is correct, redirect to dashboard
-            return render(request, 'dashboard.html', {'user': user})
-        else:
-            # If authentication fails, show an error message
-            messages.error(request, 'Invalid username or password')
-            return redirect('login')  # Redirect back to login page
-
-    # If not a POST request, simply show the login page
-    return render(request, 'login.html')
 
 def books_view(request):
     query = request.GET.get('query', '')
@@ -189,3 +179,37 @@ def deleteBorrowers(request,id):
     deletebrws.delete()
     return redirect('/borrowers')
 
+# @login_required
+def studentLib(request): #renders the student library page
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # Check if the user exists with the given username
+        try:
+            user = CustomUser.objects.get(username=username)
+        except CustomUser.DoesNotExist:
+            user = None
+
+        if user and check_password(password, user.password):
+            # If user exists and password is correct, redirect to dashboard
+            return render(request, 'studentLibrarian.html', {'user': user})
+        else:
+            # If authentication fails, show an error message
+            messages.error(request, 'Invalid username or password')
+            return redirect('login')  # Redirect back to login page
+
+    # If not a POST request, simply show the login page
+    return render(request, 'login.html')
+
+def studentBooks(request): # renders the student books page for students to borrow books and  see available books
+    query = request.GET.get('query', '')
+    if query:
+        results = Book.objects.filter(title__icontains=query) | Book.objects.filter(author__icontains=query)
+    else:
+        results = Book.objects.all()  # Show all books when no search query exists
+    
+    context = {'bks': results, 'query': query}
+    return render(request, 'studentsBooks.html', context)
+
+ 

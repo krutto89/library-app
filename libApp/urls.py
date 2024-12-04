@@ -21,6 +21,10 @@ urlpatterns = [
     path('editborrowers/<int:id>/',views.borrowersEdit, name='editborrower'),
     path('deleteborrowers/<int:id>/',views.deleteBorrowers, name='deleteborrower'),
     path ('updateborrowers/<int:id>/',views.updateBorrowers, name='updateborrower'),
+    path('sld/',views.studentLib, name='studentlibdashboard'),
+    path('studentbooks/',views.studentBooks, name='studentbooks'),
+    
+    # path('librarian-login/', views.librarian_login, name='librarian_login'),
     # path('search/', views.search_books, name='search_books'),
     # path('logout/', views.logout_view, name='logout'),
     # path('profile/<str:username>/', views.profile, name='profile'),

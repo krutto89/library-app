@@ -4,6 +4,12 @@ from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
     # add any additional custom fields here    
+    #role field to differentiate between librarians and students
+    ROLE_CHOICES =[
+        ('Librarian', 'Librarian'),
+        ('Student', 'Student'),
+    ]
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Student')
     class Meta:
         constraints = [
             models.UniqueConstraint(
