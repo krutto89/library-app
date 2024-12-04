@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div >
+            <h2 style="text-align: center;" >VIEW BOOKS</h2>
+            <p></p>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+                <form method="GET">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" class="form-control form-control-lg" placeholder="Search Book by Title or Author" name="query" value="{{ query }}">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="mt-4">
+            {% if results %}
+                <h4>Search Results:</h4>
+                <ul>
+                    {% for book in results %}
+                        <li>{{ book.title }} by {{ book.author }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p></p>
+            {% endif %}
+        </div>
+
+        <p></p>
+
+        <table border="1" class="table table-striped ">
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Date-Added</th>
+                <th>status</th>
+                <th>Action</th>
+            </tr>
+            {% for x in bks %}
+
+            <tr>
+                <td>
+                    {% if x.image %}
+                    <img src="{{x.image.url}}" alt="Book Cover" style="width: 40px; height: 40px;">
+                    {% else %}
+                    No image
+                    {% endif %}
+
+                </td>
+                <td>{{x.title}}</td>
+                <td>{{x.category}}</td>
+                <td>{{x.author}}</td>
+                <td>{{x.dateAdded}}</td>
+                <td>{{x.quantity}}</td>
+                <td>
+                    <a href="" class="btn btn-success" >Borrow</a>
+                    
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>
+        
+      </div>
+</body>
+</html>
+{% endblock %}
