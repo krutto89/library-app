@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Borrow Confirmation</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        .container { background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        h1 { color: #5e5e5e; }
+        .message { font-size: 16px; color: #333333; margin-bottom: 20px; }
+        .book-info { margin-top: 20px; }
+        .footer { font-size: 12px; color: #aaaaaa; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Borrowed: {{ book.title }}</h1>
+        <p class="message">
+            Dear {{ user.first_name }},
+        </p>
+        <p class="message">
+            You have successfully borrowed the book "{{ book.title }}" by {{ book.author }}. Enjoy your reading!
+        </p>
+        <div class="book-info">
+            <p><strong>Book Title:</strong> {{ book.title }}</p>
+            <p><strong>Author:</strong> {{ book.author }}</p>
+        </div>
+        <div class="footer">
+            <p>Thank you for using our library system!</p>
+            <p>Best regards Rutto,</p>
+            <p>Your Librarian</p>
+        </div>
+    </div>
+</body>
+</html>

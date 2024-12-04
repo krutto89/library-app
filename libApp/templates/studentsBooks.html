@@ -12,7 +12,9 @@
 <body>
     <div>
         <div >
-            <h2 style="text-align: center;" >VIEW BOOKS</h2>
+            <div style="width: 100%; height: 150px; overflow: hidden;">
+                <img src="{% static 'bk.jpg' %}" alt="" style="width: 100%; height: auto; display: block;">
+            </div>
             <p></p>
           </div>
           <div class="row">
@@ -68,7 +70,7 @@
                 <td>{{x.dateAdded}}</td>
                 <td>{{x.quantity}}</td>
                 <td>
-                    <a href="" class="btn btn-success" >Borrow</a>
+                    <a href="{% url 'borrow_book' x.id %}" class="btn btn-success" >Borrow</a>
                     
                 </td>
             </tr>

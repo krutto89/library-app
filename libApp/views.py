@@ -212,4 +212,44 @@ def studentBooks(request): # renders the student books page for students to borr
     context = {'bks': results, 'query': query}
     return render(request, 'studentsBooks.html', context)
 
- 
+from django.shortcuts import render, redirect
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.conf import settings
+from .forms import BorrowBookForm
+from .models import Book
+
+def borrow_book(request,id):
+    # Get the book by its ID
+    book = Book.objects.filter(id=id).first()  
+    if not book:
+        return redirect('books')  # Redirect if the book doesn't exist
+
+    if request.method == 'POST':
+        form = BorrowBookForm(request.POST)
+        if form.is_valid():
+            # Get email input
+            user_email = form.cleaned_data['email']
+
+            # Render the email confirmation template
+            subject = f'Book Borrowed: {book.title}'
+            message = render_to_string('email_confirmation.html', {
+                'book': book,
+                'user': request.user,
+            })
+
+            # Send the email
+            email = EmailMessage(subject, message, settings.DEFAULT_FROM_EMAIL, [user_email])
+            email.content_subtype = 'html'  
+            email.send()
+
+            # Redirect to confirmation page if successfull
+            return redirect('borrow_confirmation')
+    else:
+        form = BorrowBookForm()
+
+    # Render the borrow book page with the form and book details
+    return render(request, 'borrow_book.html', {'form': form, 'book': book})
+
+def borrow_confirmation(request):
+    return render(request, 'borrow_confirmation.html')

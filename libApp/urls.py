@@ -23,6 +23,8 @@ urlpatterns = [
     path ('updateborrowers/<int:id>/',views.updateBorrowers, name='updateborrower'),
     path('sld/',views.studentLib, name='studentlibdashboard'),
     path('studentbooks/',views.studentBooks, name='studentbooks'),
+    path('borrow/<int:id>/', views.borrow_book, name='borrow_book'),
+    path('borrowconfim/',views.borrow_confirmation , name='borrow_confirmation'),
     
     # path('librarian-login/', views.librarian_login, name='librarian_login'),
     # path('search/', views.search_books, name='search_books'),
