@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.hashers import check_password
 from .models import Book ,Members ,BorrowersList
 from .forms import BookForm , MemberForm ,BorrowerForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login ,logout
 import requests
 from django.http import HttpResponse
 from requests.auth import HTTPBasicAuth
@@ -300,3 +300,10 @@ def stk(request):
         }
         response = requests.post(api_url, json=request, headers=headers)
         return HttpResponse("Success")
+
+def tips(request):
+    return render(request, 'tips.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')

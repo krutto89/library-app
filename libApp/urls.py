@@ -28,6 +28,8 @@ urlpatterns = [
     path('pay/', views.pay, name='pay'),
     path('stk/', views.stk, name='stk'),
     path('token/', views.token, name='token'),
+    path('help/',views.tips, name='tips'),
+    path('logout/', views.logout_view, name='logout'),
 
     
     # path('librarian-login/', views.librarian_login, name='librarian_login'),
