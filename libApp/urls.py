@@ -30,6 +30,7 @@ urlpatterns = [
     path('token/', views.token, name='token'),
     path('help/',views.tips, name='tips'),
     path('logout/', views.logout_view, name='logout'),
+    path('recommend/', views.recommend_books, name='recommend_books'),
 
     
     # path('librarian-login/', views.librarian_login, name='librarian_login'),

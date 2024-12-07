@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.contrib import messages
 from django.contrib.auth.hashers import check_password
-from .models import Book ,Members ,BorrowersList
-from .forms import BookForm , MemberForm ,BorrowerForm
+from .models import Book ,Members ,BorrowersList ,BorrowedBook
+from .forms import BookForm , MemberForm ,BorrowerForm 
 from django.contrib.auth import authenticate, login ,logout
 import requests
 from django.http import HttpResponse
@@ -307,3 +307,29 @@ def tips(request):
 def logout_view(request):
     logout(request)
     return redirect('login')
+
+def recommend_books(request):
+    if request.method == 'POST':
+        user_name = request.POST.get('user_name')
+        try:
+            user = Members.objects.get(names=user_name)
+            # Get the last book the user borrowed and liked
+            last_borrowed = BorrowedBook.objects.filter(user=user, liked=True).order_by('-borrow_date').first()
+            
+            if last_borrowed:
+                # Find  books in the same category
+                similar_books = Book.objects.filter(category=last_borrowed.book.category).exclude(id=last_borrowed.book.id)[:1]
+                
+                if similar_books.exists():
+                    recommended_book = similar_books[0].title
+                    message = f"Based on the books you have recently liked and borrowed, we recommend you to try out this one: {recommended_book}"
+                else:
+                    message = "We couldn't find any similar books to recommend at the moment."
+            else:
+                message = "We couldn't find any liked books in your history to base a recommendation on."
+        except Members.DoesNotExist:
+            message = "User not found."
+        
+        return render(request, 'recommendations.html', {'message': message})
+    
+    return render(request, 'recommendations.html')

@@ -72,3 +72,14 @@ class BorrowersList(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class BorrowedBook(models.Model):
+    user = models.ForeignKey(Members, on_delete=models.CASCADE)  
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)      
+    borrow_date = models.DateTimeField(auto_now_add=True)      
+    return_date = models.DateTimeField(null=True, blank=True)     
+    liked = models.BooleanField(default=False)                    # If user liked the book
+
+    def __str__(self):
+        return f"{self.user.names} borrowed {self.book.title}"
