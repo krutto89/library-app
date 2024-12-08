@@ -326,7 +326,7 @@ def recommend_books(request):
                 else:
                     message = "We couldn't find any similar books to recommend at the moment."
             else:
-                message = "We couldn't find any liked books in your history to base a recommendation on."
+                message = "We couldn't find any liked or borrowed books in your history to base a recommendation on."
         except Members.DoesNotExist:
             message = "User not found."
         

@@ -17,10 +17,10 @@
     <div class="container">
         <h1>Book Borrowed: {{ book.title }}</h1>
         <p class="message">
-            Dear {{ user.first_name }},
+            Dear {{ user.names }},
         </p>
         <p class="message">
-            You have successfully borrowed the book "{{ book.title }}" by {{ book.author }}. <br> You are Supposed to return it to the Library Seven Days from the day you borrowed the book. <br> <p></p><strong>Enjoy your reading!</strong>
+            You have successfully borrowed the book "{{ book.title }}" by {{ book.author }}. <br>Please come pick it up on the librarian's desk <br> You are Supposed to return it to the Library Seven Days from the day you borrowed the book. <br> <p></p><strong>Enjoy your reading!</strong>
         </p>
         <div class="book-info">
             <p><strong>Book Title:</strong> {{ book.title }}</p>
